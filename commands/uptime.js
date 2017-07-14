@@ -3,7 +3,7 @@ const Confax = require('../bot.js')
 
 Confax.registerCommand('uptime', 'default', (message, bot) => {
   var now = Date.now()
-  var msec = now - bot.readyTime
+  var msec = now - bot.readyTimestamp
   var days = Math.floor(msec / 1000 / 60 / 60 / 24)
   msec -= days * 1000 * 60 * 60 * 24
   var hours = Math.floor(msec / 1000 / 60 / 60)
@@ -11,18 +11,18 @@ Confax.registerCommand('uptime', 'default', (message, bot) => {
   var mins = Math.floor(msec / 1000 / 60)
   msec -= mins * 1000 * 60
   var secs = Math.floor(msec / 1000)
-  var timestr = ''
+  var timestring = ''
   if (days > 0) {
-    timestr += days + 'd '
+    timestring += days + 'd '
   }
   if (hours > 0) {
-    timestr += hours + 'h '
+    timestring += hours + 'h '
   }
   if (mins > 0) {
-    timestr += mins + 'm '
+    timestring += mins + 'm '
   }
   if (secs > 0) {
-    timestr += secs + 's '
+    timestring += secs + 's '
   }
-  return '**Uptime:**' + timestr
+  return '**Uptime:** ' + timestring
 }, [], 'View the current uptime of Confax', '[]')
