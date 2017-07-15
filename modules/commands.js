@@ -66,8 +66,9 @@ bot.on('message', (message) => {
       try {
         var result
 
-        if(cmdType)
+        if(cmdType){
           result = commands[cmdType][cmd].process(message, bot)
+        }
       } catch (error) {
         console.log('An Error occured: ' + error.stack)
       }
