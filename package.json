@@ -12,7 +12,6 @@
     "js-yaml": "^3.8.4",
     "mathjs": "^3.13.3",
     "node-opus": "^0.2.6",
-    "recursive-readdir-sync": "^1.0.6",
     "request": "^2.81.0"
   },
   "engines": {
@@ -26,7 +25,6 @@
     "url": "git+https://github.com/bananaprotocol/Confax.git"
   },
   "scripts": {
-    "start": "node bot.js",
-    "debug": "node --debug bot.js"
+    "start": "node bot.js"
   }
 }

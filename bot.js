@@ -5,6 +5,7 @@ const yaml = require('js-yaml')
 const config = require('./config')
 const http = require('http')
 const dotenv = require('dotenv')
+const utils = require('./utils.js')
 dotenv.load()
 
 exports.bot = bot
@@ -52,19 +53,25 @@ exports.loadScript = loadScript
 exports.changeConfig = changeConfig
 exports.getConfigValue = getConfigValue
 
-var commands = fs.readdirSync('./commands/')
-commands.forEach(script => {
-  if (script.substring(script.length - 3, script.length) === '.js') {
-    exports.loadScript('./commands/' + script)
-  }
-})
+var loadCommandsAndModules = (reload) => {
 
-var modules = fs.readdirSync('./modules/')
-modules.forEach(script => {
-  if (script.substring(script.length - 3, script.length) === '.js') {
-    loadScript('./modules/' + script)
-  }
-})
+  var commands = utils.recursiveReaddirSync('./commands/')
+  console.log(commands)
+  commands.forEach(script => {
+    if (script.substring(script.length - 3, script.length) === '.js') {
+      exports.loadScript(script)
+    }
+  })
+
+  var modules = utils.recursiveReaddirSync('./modules/')
+  modules.forEach(script => {
+    if (script.substring(script.length - 3, script.length) === '.js') {
+      loadScript(script)
+    }
+  })
+}
+
+loadCommandsAndModules()
 
 exports.getHTTP = (link) => {
   if (!link) return undefined
